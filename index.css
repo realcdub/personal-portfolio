@@ -5,6 +5,7 @@
     --anchor-text-color: #ff7a1a;
     --project-image-width: 410px;
     --project-image-height: 220px;
+    --project-image-border-color: #383737;
 }
 
 body {
@@ -20,8 +21,12 @@ main {
 }
 
 a {
-    text-decoration: underline;
     color: var(--anchor-text-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 header {
@@ -36,7 +41,13 @@ footer {
 nav {
     position: fixed;
     width: 100%;
+    z-index: 100;
     background: var(--navigation-bg);
+}
+
+nav a:hover {
+    text-decoration: none;
+    color: var(--anchor-text-color);
 }
 
 nav ul {
@@ -70,7 +81,8 @@ nav a:visited {
 }
 
 article {
-    overflow: hidden;
+    /* I received this from Claude for fixing image floating issues, since I am not allowed to use flex box. */
+    display: flow-root; 
 }
 
 article img {
@@ -79,7 +91,14 @@ article img {
     object-fit: cover;
     float: left;
     margin-right: 20px;
+    border: 1px solid var(--project-image-border-color);
     border-radius: 8px;
+    transition: transform 0.1s ease;
+}
+
+article img:hover {
+    border-color: var(--anchor-text-color); 
+    transform: scale(1.03);
 }
 
 article a {
