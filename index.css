@@ -1,0 +1,92 @@
+:root {
+    --primary-bg: #121212;
+    --navigation-bg: #1c1c1c;
+    --primary-text-color: white;
+    --anchor-text-color: #ff7a1a;
+    --project-image-width: 410px;
+    --project-image-height: 220px;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: var(--primary-bg);
+    color: var(--primary-text-color);
+    margin: 0;
+}
+
+main {
+    padding-left: 15vw;
+    padding-right: 15vw;
+}
+
+a {
+    text-decoration: underline;
+    color: var(--anchor-text-color);
+}
+
+header {
+    margin: 0;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    background: var(--navigation-bg);
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+}
+
+nav li {
+    display: inline-block;
+    padding: 0px 25px 0px 25px;
+    font-weight: bold;
+}
+
+nav a {
+    color: var(--primary-text-color);
+    text-decoration: none;
+}
+
+nav a:visited {
+    color: var(--primary-text-color);
+}
+
+#logo {
+    border-radius: 100%;
+    margin: 75px 25px 25px 25px;
+}
+
+#intro {
+    text-align: center;
+}
+
+article {
+    overflow: hidden;
+}
+
+article img {
+    width: var(--project-image-width);
+    height: var(--project-image-height);
+    object-fit: cover;
+    float: left;
+    margin-right: 20px;
+}
+
+article a {
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
+article a:hover {
+    color: var(--anchor-text-color);
+    text-decoration: underline;
+}
