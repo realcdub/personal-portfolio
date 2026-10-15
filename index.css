@@ -9,13 +9,14 @@
 }
 
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: var(--primary-bg);
     color: var(--primary-text-color);
     margin: 0;
 }
 
 main {
+    margin: 0 auto;
     padding-left: 15vw;
     padding-right: 15vw;
 }
@@ -24,12 +25,12 @@ h1 {
     margin: 0;
 }
 
-a {
+p a {
     color: var(--anchor-text-color);
     text-decoration: none;
 }
 
-a:hover {
+p a:hover {
     text-decoration: underline;
 }
 
@@ -43,10 +44,12 @@ footer {
 }
 
 nav {
+    display: flex;
     position: fixed;
     width: 100%;
     z-index: 100;
     background: var(--navigation-bg);
+    justify-content: space-between;
 }
 
 nav a:hover {
@@ -71,10 +74,6 @@ nav a {
     text-decoration: none;
 }
 
-nav a:visited {
-    color: var(--primary-text-color);
-}
-
 #logo {
     border-radius: 100%;
     margin: 75px 25px 25px 25px;
@@ -82,6 +81,14 @@ nav a:visited {
 
 #intro {
     text-align: center;
+}
+
+#intro a {
+    text-decoration: none;
+}
+
+#intro img:hover {
+    outline: 1px solid var(--anchor-text-color);
 }
 
 article {
@@ -113,4 +120,16 @@ article a {
 article a:hover {
     color: var(--anchor-text-color);
     text-decoration: underline;
+}
+
+.social-button {
+    background-color: var(--navigation-bg);
+    border-radius: 8px;
+    margin: 0 10px 0 10px;
+    padding: 10px;
+    width: 20px;
+}
+
+hr {
+    color: var(--anchor-text-color);
 }
