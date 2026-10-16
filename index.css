@@ -4,7 +4,6 @@
     --primary-text-color: white;
     --anchor-text-color: #ff7a1a;
     --project-card-width: 275px;
-    --project-card-height: 200px;
     --project-image-height: 150px;
     --project-image-border-color: #383737;
 }
@@ -48,9 +47,17 @@ nav {
     display: flex;
     position: fixed;
     width: 100%;
-    z-index: 100;
     background: var(--navigation-bg);
-    justify-content: space-between;
+    justify-content: right;
+}
+
+#menu-icon {
+    height: 20px;
+}
+
+nav a {
+    color: var(--primary-text-color);
+    text-decoration: none;
 }
 
 nav a:hover {
@@ -58,21 +65,72 @@ nav a:hover {
     color: var(--anchor-text-color);
 }
 
+/*
+Section: Navigation
+
+Prompt: There are 5 list items in a navigation element.
+Each list items points to a section to the page, Introduction (#intro), About (#about), Projects (#projects), and Contact (#contact).
+The fifth list item is a hamburger icon that should only appear for a screen of 506px or lower.
+Otherwise, show the default list items, showing the links, with no hamburger icon.
+Ensure that each list item is vertically centered.
+Also, when the hamburger icon is clicked, show a dropdown menu that contains all of the sections.
+The hambuger icon has an id of "menu-icon".
+You are only allowed to work on the "index.css" file. Do not modify any other file. 
+
+*/
+
+/* ---------- Navigation ---------- */
+
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 15px;
+    display: flex;              /* lay items out in a row */
+    align-items: center;        /* vertically center every list item */
 }
 
 nav li {
-    display: inline-block;
+    display: flex;              /* lets the link/icon center inside the li */
+    align-items: center;
     padding: 0px 25px 0px 25px;
     font-weight: bold;
 }
 
-nav a {
-    color: var(--primary-text-color);
-    text-decoration: none;
+/* Hamburger: hidden by default (screens wider than 506px) */
+nav li:has(#menu-icon) {
+    display: none;
+}
+
+#menu-icon {
+    height: 20px;
+    cursor: pointer;
+}
+
+/* ---------- Mobile (506px and below) ---------- */
+@media (max-width: 506px) {
+    nav ul {
+        flex-direction: column;     /* dropdown stacks vertically */
+        align-items: flex-end;      /* keep items aligned to the right */
+        width: 100%;
+    }
+
+    /* Show the hamburger, and keep it at the top of the stack */
+    nav li:has(#menu-icon) {
+        display: flex;
+        order: -1;
+    }
+
+    /* Hide the section links until the menu is opened */
+    nav li:not(:has(#menu-icon)) {
+        display: none;
+    }
+
+    /* Dropdown: reveal all sections when the menu is activated */
+    nav:hover li:not(:has(#menu-icon)),
+    nav:focus-within li:not(:has(#menu-icon)) {
+        display: flex;
+        padding: 12px 25px;
+    }
 }
 
 #logo {
@@ -90,11 +148,6 @@ nav a {
 
 #intro img:hover {
     outline: 1px solid var(--anchor-text-color);
-}
-
-article {
-    /* I received this from Claude for fixing image floating issues, since I am not allowed to use flex box. */
-    display: flow-root; 
 }
 
 article a {
@@ -119,6 +172,7 @@ hr {
     grid-template-columns: 1fr;
     row-gap: 10px;
     column-gap: 10px;
+    padding-top: 18px;
 }
 
 @media (min-width: 700px) {
@@ -138,7 +192,6 @@ hr {
     border-radius: 12px;
     background-color: var(--navigation-bg);
     width: var(--project-card-width);
-    /* height: var(--project-card-height); */
     border: 1px solid var(--project-image-border-color);
 }
 
