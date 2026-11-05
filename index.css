@@ -3,6 +3,7 @@
     --navigation-bg: #1c1c1c;
     --primary-text-color: white;
     --anchor-text-color: #ff7a1a;
+    --hover-anchor-text-color: #f7a66c;
     --project-card-width: 275px;
     --project-image-height: 150px;
     --project-image-border-color: #383737;
@@ -27,11 +28,11 @@ h1 {
 
 p a {
     color: var(--anchor-text-color);
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 p a:hover {
-    text-decoration: underline;
+    color: var(--hover-anchor-text-color);
 }
 
 header {
@@ -167,7 +168,7 @@ hr {
     color: var(--anchor-text-color);
 }
 
-#projects {
+.project-list {
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 10px;
@@ -176,13 +177,13 @@ hr {
 }
 
 @media (min-width: 700px) {
-    #projects {
+    .project-list {
         grid-template-columns: 1fr 1fr;
     }
 }
 
 @media (min-width: 1024px) {
-    #projects {
+    .project-list {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
