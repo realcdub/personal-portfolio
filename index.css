@@ -170,10 +170,6 @@ When the screen is not wide enough to display the entire navigation, ensure that
     object-fit: contain;
 }
 
-:root[data-theme="light"] .theme-button img {
-    filter: invert(1);
-}
-
 #menu-button:focus-visible,
 .theme-button:focus-visible {
     outline: 2px solid var(--anchor-text-color);
@@ -208,8 +204,12 @@ When the screen is not wide enough to display the entire navigation, ensure that
 }
 
 #logo {
+    width: 175px;
+    height: 175px;
     border-radius: 100%;
-    margin: 75px 25px 25px 25px;
+    margin: 100px 25px 5px 25px;
+    object-fit: cover;
+    object-position: top;
 }
 
 #intro {
@@ -218,10 +218,7 @@ When the screen is not wide enough to display the entire navigation, ensure that
 
 #intro a {
     text-decoration: none;
-}
 
-#intro img:hover {
-    outline: 1px solid var(--anchor-text-color);
 }
 
 article a {
@@ -230,11 +227,26 @@ article a {
 }
 
 .social-button {
+    display: inline-block;
     background-color: var(--navigation-bg);
     border-radius: 8px;
     margin: 0 10px 0 10px;
     padding: 10px;
     width: 20px;
+    height: 20px;
+}
+
+.social-button:hover {
+    outline: 1px solid var(--anchor-text-color);
+}
+
+.social-button img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+:root[data-theme="light"] .social-button img {
+    filter: invert(1);
 }
 
 hr {
