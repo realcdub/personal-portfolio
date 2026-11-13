@@ -110,6 +110,9 @@ nav li {
 }
 
 /*
+Section: Menu, Theme, Navigation
+
+Prompt: 
 Integrate a dark mode light button on the top right of the screen, within the navigation. 
 Create two separate buttons for both the light mode and dark mode images in the images folder. 
 However, ensure that they are on a shared background and when one is pressed, it is given a distinctive color on the background to show which one is currently selected. 
