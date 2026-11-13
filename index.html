@@ -12,11 +12,28 @@
     <header>
         <nav aria-label="Navigation">
             <ul>
-                <li><img id="menu-icon" src="images/menu.svg" alt="Menu icon"></li>
+            <!-- Section: Navigation
+            Prompt:
+            Integrate a dark mode light button on the top right of the screen, within the navigation. 
+            Create two separate buttons for both the light mode and dark mode images in the images folder. 
+            However, ensure that they are on a shared background and when one is pressed, it is given a distinctive color on the background to show which one is currently selected. 
+            When the screen is not wide enough to display the entire navigation, ensure that the button is available in the dropdown of the navigation. 
+            -->
+                <li class="menu-item"><button id="menu-button" type="button" aria-label="Open navigation menu" aria-expanded="false"><img id="menu-icon" src="images/menu.svg" alt=""></button></li>
                 <li><a href="#intro">Introduction</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li class="theme-item">
+                    <div class="theme-toggle" role="group" aria-label="Color theme">
+                        <button class="theme-button" type="button" data-theme-choice="light" aria-label="Light mode" aria-pressed="false">
+                            <img src="images/light_mode.png" alt="">
+                        </button>
+                        <button class="theme-button" type="button" data-theme-choice="dark" aria-label="Dark mode" aria-pressed="true">
+                            <img src="images/dark_mode.png" alt="">
+                        </button>
+                    </div>
+                </li>
             </ul>
         </nav>
         <img id="logo" width="150" src="images/headshot.png" alt="Charles White's Headshot">
@@ -94,5 +111,52 @@
     <footer>
         <p>Copyright &copy; <time datetime="2026">2026</time> Charles White</p>
     </footer>
+
+    <script>
+        /*
+            Section: Dark Mode Light Mode Script
+            Prompt:
+            Integrate a dark mode light button on the top right of the screen, within the navigation. 
+            Create two separate buttons for both the light mode and dark mode images in the images folder. 
+            However, ensure that they are on a shared background and when one is pressed, it is given a distinctive color on the background to show which one is currently selected. 
+            When the screen is not wide enough to display the entire navigation, ensure that the button is available in the dropdown of the navigation. 
+        */
+        const navigation = document.querySelector("nav");
+        const menuButton = document.querySelector("#menu-button");
+        const themeButtons = document.querySelectorAll(".theme-button");
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = navigation.classList.toggle("is-open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+        });
+
+        navigation.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && navigation.classList.contains("is-open")) {
+                navigation.classList.remove("is-open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation menu");
+                menuButton.focus();
+            }
+        });
+
+        navigation.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navigation.classList.remove("is-open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation menu");
+            });
+        });
+
+        themeButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const theme = button.dataset.themeChoice;
+                document.documentElement.dataset.theme = theme;
+                themeButtons.forEach((themeButton) => {
+                    themeButton.setAttribute("aria-pressed", String(themeButton === button));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

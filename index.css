@@ -4,9 +4,20 @@
     --primary-text-color: white;
     --anchor-text-color: #ff7a1a;
     --hover-anchor-text-color: #f7a66c;
+    --theme-selected-bg: #555;
     --project-card-width: 275px;
     --project-image-height: 150px;
     --project-image-border-color: #383737;
+}
+
+:root[data-theme="light"] {
+    --primary-bg: #f5f5f5;
+    --navigation-bg: #e2e2e2;
+    --primary-text-color: #171717;
+    --anchor-text-color: #a84200;
+    --hover-anchor-text-color: #702d00;
+    --theme-selected-bg: #bdbdbd;
+    --project-image-border-color: #c5c5c5;
 }
 
 body {
@@ -50,6 +61,7 @@ nav {
     width: 100%;
     background: var(--navigation-bg);
     justify-content: right;
+    z-index: 1;
 }
 
 #menu-icon {
@@ -97,38 +109,89 @@ nav li {
     font-weight: bold;
 }
 
-/* Hamburger: hidden by default (screens wider than 506px) */
-nav li:has(#menu-icon) {
+.menu-item {
     display: none;
 }
 
 #menu-icon {
     height: 20px;
+    width: 20px;
+}
+
+#menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: 0;
+    background: transparent;
     cursor: pointer;
 }
 
-/* ---------- Mobile (506px and below) ---------- */
-@media (max-width: 506px) {
+.theme-toggle {
+    display: flex;
+    padding: 4px;
+    gap: 2px;
+    border-radius: 8px;
+    background: var(--navigation-bg);
+}
+
+.theme-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 6px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.theme-button[aria-pressed="true"] {
+    background: var(--theme-selected-bg);
+}
+
+.theme-button img {
+    display: block;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+:root[data-theme="light"] .theme-button img {
+    filter: invert(1);
+}
+
+#menu-button:focus-visible,
+.theme-button:focus-visible {
+    outline: 2px solid var(--anchor-text-color);
+    outline-offset: 2px;
+}
+
+/* ---------- Compact navigation (700px and below) ---------- */
+@media (max-width: 700px) {
     nav ul {
         flex-direction: column;     /* dropdown stacks vertically */
         align-items: flex-end;      /* keep items aligned to the right */
         width: 100%;
+        box-sizing: border-box;
     }
 
     /* Show the hamburger, and keep it at the top of the stack */
-    nav li:has(#menu-icon) {
+    .menu-item {
         display: flex;
         order: -1;
     }
 
     /* Hide the section links until the menu is opened */
-    nav li:not(:has(#menu-icon)) {
+    nav li:not(.menu-item) {
         display: none;
     }
 
     /* Dropdown: reveal all sections when the menu is activated */
-    nav:hover li:not(:has(#menu-icon)),
-    nav:focus-within li:not(:has(#menu-icon)) {
+    nav.is-open li:not(.menu-item) {
         display: flex;
         padding: 12px 25px;
     }
