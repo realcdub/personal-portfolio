@@ -7,6 +7,7 @@
     <meta name="author" content="Charles White">
     <link rel="stylesheet" href="index.css">
     <title>Charles White | Personal Portfolio</title>
+    <script src="https://unpkg.com/scrollreveal@4"></script>
 </head>
 <body>
     <header>
@@ -156,6 +157,14 @@
                     themeButton.setAttribute("aria-pressed", String(themeButton === button));
                 });
             });
+        });
+
+        ScrollReveal().reveal(".project-card", {
+            distance: "50px",
+            duration: 800,
+            easing: "ease-in-out",
+            origin: "bottom",
+            reset: true
         });
     </script>
 </body>
